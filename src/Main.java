@@ -1,5 +1,11 @@
-public class Main{
+import pims.config.view.LoginForm;
+import javax.swing.*;
+
+public class Main {
     public static void main(String[] args){
-        System.out.println("Application Start");
+        SwingUtilities.invokeLater(() ->{
+            LoginForm loginForm = new LoginForm();
+            loginForm.setVisible(true);
+        });
     }
 }
