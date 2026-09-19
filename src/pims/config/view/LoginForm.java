@@ -82,7 +82,7 @@ public class LoginForm extends JFrame {
             if ("Admin".equalsIgnoreCase(user.role())) {
                 new AdminDashboard(user.fullName()).setVisible(true);
             } else if ("Cashier".equalsIgnoreCase(user.role())) {
-                new CashierDashboard(user.fullName()).setVisible(true);
+                new CashierDashboard(user.userId(), user.fullName()).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "The account has an unsupported role.", "Role Error", JOptionPane.ERROR_MESSAGE);
                 return;

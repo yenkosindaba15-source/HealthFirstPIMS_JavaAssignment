@@ -28,7 +28,10 @@ public class CashierPanel extends JPanel {
 
     private JTextField txtQuantity;
 
-    public CashierPanel() {
+    private final int loggedInUserId;
+
+    public CashierPanel(int loggedInUserId) {
+        this.loggedInUserId = loggedInUserId;
         setLayout(new BorderLayout());
 
         medicineModel = new DefaultTableModel();
@@ -182,7 +185,7 @@ public class CashierPanel extends JPanel {
             }
             SalesDAO dao = new SalesDAO();
 
-            int saleId = dao.createSale(total, 1);
+            int saleId = dao.createSale(total, loggedInUserId);
 
             for (CartItem item : cart){
                 dao.addSaleItem(saleId, item.getMedicineId(), item.getQuantity(), item.getPrice());

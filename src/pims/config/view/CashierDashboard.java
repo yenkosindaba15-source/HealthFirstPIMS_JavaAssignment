@@ -7,7 +7,7 @@ import java.awt.*;
 public class CashierDashboard extends JFrame {
     private JButton btnLogout;
 
-    public CashierDashboard(String FullName) {
+    public CashierDashboard(int userId, String FullName) {
         setTitle("HealthFirst PIMS - Cashier");
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -20,10 +20,6 @@ public class CashierDashboard extends JFrame {
         JLabel welcomeLabel = new JLabel("Welcome, " + FullName, SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        btnLogout = new JButton("Logout");
-        btnLogout.setPreferredSize(new Dimension(100,30));
-        btnLogout.addActionListener(e -> logout());
-
         JPanel headerPanel = new JPanel(new BorderLayout());
         JPanel textPanel = new JPanel(new GridLayout(2,1));
         textPanel.add(heading);
@@ -31,15 +27,17 @@ public class CashierDashboard extends JFrame {
         headerPanel.add(textPanel, BorderLayout.CENTER);
 
         //Logout button resize
+        btnLogout = new JButton("Logout");
         JPanel logoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10,10));
         btnLogout.setPreferredSize(new Dimension(90,28));
         btnLogout.setFocusPainted(false);
+        btnLogout.addActionListener(e -> logout());
         logoutPanel.add(btnLogout);
 
         headerPanel.add(logoutPanel, BorderLayout.EAST);
 
         add(headerPanel, BorderLayout.NORTH);
-        add(new CashierPanel(), BorderLayout.CENTER);
+        add(new CashierPanel(userId), BorderLayout.CENTER);
 
         btnLogout = new JButton("Logout");
         btnLogout.addActionListener(e -> logout());
